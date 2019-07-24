@@ -1,0 +1,25 @@
+<%= link_to 'Add manager', new_manager_path %>
+<h1>Listing managers</h1>
+
+<table>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>E-mail</th>
+    </tr>
+
+    <% @managers.each do |manager| %>
+        <tr>
+            <td><%= manager.first_name %></td>
+            <td><%= manager.last_name %></td>
+            <td><%= manager.email %></td>
+            <td><%= link_to 'Show skills', manager_path(manager) %></td>
+            <td><%= link_to 'Edit', edit_manager_path(manager) %></td>
+            <td><%= link_to 'Delete', manager_path(manager),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>
+<br>
+<%= link_to 'Back', controller: 'dashboard' %>
