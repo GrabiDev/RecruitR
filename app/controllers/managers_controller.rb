@@ -39,7 +39,7 @@ class ManagersController < ApplicationController
     @manager = Manager.find(params[:id])
     @manager.destroy
 
-    redirect_to skills_path
+    redirect_to managers_path
 end
 
   private
