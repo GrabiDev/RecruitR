@@ -1,0 +1,40 @@
+<%= form_with model: @candidate, local: true do |form| %>
+    
+    <% if @candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@candidate.errors.count, "error") %> prohibited
+        this candidate from being added:
+      </h2>
+      <ul>
+        <% @candidate.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <p>
+      <%= form.label :first_name %><br>
+      <%= form.text_field :first_name %>
+    </p>
+
+    <p>
+      <%= form.label :last_name %><br>
+      <%= form.text_field :last_name %>
+    </p>
+
+    <p>
+      <%= form.label :email %><br>
+      <%= form.text_field :email %>
+    </p>
+
+    <p>
+      <%= form.label :skills %><br>
+      <%= form.text_field :all_skills, placeholder: "Skills separated with comma" %>
+   
+    <p>
+      <%= form.submit "Post", class: "button"%>
+    </p>
+
+<% end %>
