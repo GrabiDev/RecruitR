@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_24_213156) do
+ActiveRecord::Schema.define(version: 2019_07_25_203011) do
 
   create_table "people", force: :cascade do |t|
     t.string "first_name"
@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 2019_07_24_213156) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skill_taggings", force: :cascade do |t|
-    t.integer "skill_id"
+  create_table "person_skill_taggings", force: :cascade do |t|
     t.integer "person_id"
+    t.integer "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_skill_taggings_on_person_id"
-    t.index ["skill_id"], name: "index_skill_taggings_on_skill_id"
+    t.index ["person_id"], name: "index_person_skill_taggings_on_person_id"
+    t.index ["skill_id"], name: "index_person_skill_taggings_on_skill_id"
   end
 
   create_table "skills", force: :cascade do |t|
