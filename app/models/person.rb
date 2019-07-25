@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
-  has_many :skill_taggings
-  has_many :skills, through: :skill_taggings
+  has_many :person_skill_taggings
+  has_many :skills, through: :person_skill_taggings
 
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }

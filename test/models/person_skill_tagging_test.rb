@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SkillTaggingTest < ActiveSupport::TestCase
+class PersonSkillTaggingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
