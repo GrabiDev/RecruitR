@@ -1,0 +1,21 @@
+<%= link_to 'Add position', new_position_path %>
+<h1>Listing positions</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+    </tr>
+
+    <% @positions.each do |position| %>
+        <tr>
+            <td><%= position.title %></td>
+            <td><%= link_to 'Show description and skills', position_path(position) %></td>
+            <td><%= link_to 'Edit', edit_position_path(position) %></td>
+            <td><%= link_to 'Delete', position_path(position),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>
+<br>
+<%= link_to 'Back', controller: 'dashboard' %>

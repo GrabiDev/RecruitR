@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'positions/index'
+  get 'positions/new'
   get 'candidates/index'
   get 'candidates/new'
   get 'managers/index'

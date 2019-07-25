@@ -1,0 +1,16 @@
+<p>
+    <strong>Title:</strong>
+    <%= @position.title %>
+</p>
+
+<p>
+    <strong>Description:</strong><br>
+    <%= @position.description %>
+</p>
+
+<p>
+    <strong>Skills:</strong>
+    <%= raw @position.all_skills %>
+</p>
+
+<%= link_to 'Back', positions_path %>
