@@ -44,6 +44,6 @@ end
 
   private
     def candidate_params
-      params.require(:candidate).permit(:first_name, :last_name, :email, :all_skills)
+      params.require(:candidate).permit(:first_name, :last_name, :email, :all_skills, :position_id)
     end
 end

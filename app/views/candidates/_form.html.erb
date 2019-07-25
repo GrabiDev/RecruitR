@@ -32,7 +32,11 @@
     <p>
       <%= form.label :skills %><br>
       <%= form.text_field :all_skills, placeholder: "Skills separated with comma" %>
-   
+    </p>
+
+    <p>
+      <%= form.label :position %><br>
+      <%= form.collection_select :position_id, Position.all, :id, :title %>
     <p>
       <%= form.submit "Post", class: "button"%>
     </p>
