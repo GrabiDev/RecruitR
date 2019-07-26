@@ -3,6 +3,7 @@ class Interview < ApplicationRecord
   has_many :manager_interview_taggings
   has_many :managers, through: :manager_interview_taggings
 
+  validates :candidate, uniqueness: true
   validates :location, presence: true, length: { minimum: 2 }
   validates :start_datetime, presence: true
   validates :end_datetime, presence: true
@@ -23,7 +24,7 @@ class Interview < ApplicationRecord
   end
 
   def location_available
-    overlapping_interviews = Interview.where(["(start_datetime >= :start_dt and start_datetime <= :start_dt) or (end_datetime >= :end_dt and end_datetime <= :end_dt) and location = :location", {start_dt: start_datetime, end_dt: end_datetime, location: location}])
+    overlapping_interviews = Interview.where(["((start_datetime >= :start_dt and start_datetime < :end_dt) or end_datetime <= :end_dt) and location = :location and not id = :id", {start_dt: start_datetime, end_dt: end_datetime, location: location, id: id}])
 
     if overlapping_interviews.present?
       errors.add(:location, "is already booked during this time")
