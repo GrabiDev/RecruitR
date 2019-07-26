@@ -22,7 +22,7 @@
                     <%= manager.full_name %><br>
                 <% end %>
                 <% else %>
-                Assign managers
+                    <%= link_to 'Assign managers', action: 'interviewers', id: candidate%>
                 <% end %>
             </td>
             <td>
