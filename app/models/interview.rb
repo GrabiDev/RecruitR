@@ -10,6 +10,7 @@ class Interview < ApplicationRecord
   validate :start_datetime_cannot_be_in_the_past
   validate :end_datetime_must_be_after_start_datetime
   validate :location_available
+  validate :must_start_and_end_on_the_same_day
 
   def start_datetime_cannot_be_in_the_past
     if start_datetime.present? && start_datetime.past?
@@ -20,6 +21,12 @@ class Interview < ApplicationRecord
   def end_datetime_must_be_after_start_datetime
     if end_datetime.present? && start_datetime.present? && end_datetime < start_datetime
       errors.add(:end_datetime, "must be after start datetime")
+    end
+  end
+
+  def must_start_and_end_on_the_same_day
+    if start_datetime.present? && end_datetime.present? && start_datetime.to_date != end_datetime.to_date
+      errors.add(:interview, "must start and end on the same day")
     end
   end
 
