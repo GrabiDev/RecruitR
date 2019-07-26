@@ -4,9 +4,7 @@ class Interview < ApplicationRecord
   has_many :managers, through: :manager_interview_taggings
 
   validates :candidate, uniqueness: true
-  validates :location, presence: true, length: { minimum: 2 }
-  validates :start_datetime, presence: true
-  validates :end_datetime, presence: true
+  validates :location, length: { minimum: 2 }
   validate :start_datetime_cannot_be_in_the_past
   validate :end_datetime_must_be_after_start_datetime
   validate :location_available
