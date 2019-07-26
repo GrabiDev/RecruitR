@@ -6,6 +6,7 @@
         <th>Last name</th>
         <th>E-mail</th>
         <th>Position</th>
+        <th>Interviewers</th>
         <th>Skills</th>
     </tr>
 
@@ -15,6 +16,15 @@
             <td><%= candidate.last_name %></td>
             <td><%= candidate.email %></td>
             <td><%= candidate.position.title %></td>
+            <td>
+                <% if candidate.interview.present? %>
+                <% candidate.interview.managers.each do |manager| %>
+                    <%= manager.full_name %><br>
+                <% end %>
+                <% else %>
+                Assign managers
+                <% end %>
+            </td>
             <td>
                 <% candidate.skills.each do |skill| %>
                     #<%= skill.name %>&nbsp;
