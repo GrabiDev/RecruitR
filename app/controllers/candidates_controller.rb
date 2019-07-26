@@ -7,6 +7,10 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.find(params[:id])
   end
 
+  def interviewers
+    @candidate = Candidate.find(params[:id])
+  end
+
   def new
     @candidate = Candidate.new
   end

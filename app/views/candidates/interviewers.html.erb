@@ -1,0 +1,6 @@
+<h2>Matching <%= @candidate.first_name %></h2>
+<p><%= @candidate.first_name %> has been added to the <%= @candidate.position.title %> position!</p>
+<p>Match <%= @candidate.first_name %> with a recruiter for the skills:
+<% @candidate.skills.each do |skill| %>
+    #<%= skill.name %>
+<% end %>
