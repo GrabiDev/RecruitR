@@ -6,6 +6,8 @@
         <th>First name</th>
         <th>Last name</th>
         <th>E-mail</th>
+        <th>Position</th>
+        <th>Skills</th>
     </tr>
 
     <% @candidates.each do |candidate| %>
@@ -13,11 +15,16 @@
             <td><%= candidate.first_name %></td>
             <td><%= candidate.last_name %></td>
             <td><%= candidate.email %></td>
-            <td><%= link_to 'Show skills', candidate_path(candidate) %></td>
+            <td><%= candidate.position.title %></td>
+            <td>
+                <% candidate.skills.each do |skill| %>
+                    #<%= skill.name %>&nbsp;
+                <% end %>
+            </td>
             <td><%= link_to 'Edit', edit_candidate_path(candidate) %></td>
             <td><%= link_to 'Delete', candidate_path(candidate),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: 'Are you sure you want to delete ' + candidate.first_name + ' ' + candidate.last_name + '?' } %></td>
         </tr>
     <% end %>
 </table>
