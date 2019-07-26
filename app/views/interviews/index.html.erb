@@ -10,7 +10,7 @@
         <th>Managers</th>
     </tr>
 
-    <% @interviews.each do |interview| %>
+    <% @interviews.where.not(start_datetime: nil).each do |interview| %>
         <tr>
             <td><%= interview.candidate.full_name %></td>
             <td><%= interview.location %></td>
