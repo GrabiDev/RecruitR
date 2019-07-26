@@ -38,7 +38,7 @@
       <%= form.label :position %><br>
       <%= form.collection_select :position_id, Position.all, :id, :title %>
     <p>
-      <%= form.submit "Post", class: "button"%>
+      <%= form.submit %>
     </p>
 
 <% end %>

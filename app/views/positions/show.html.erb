@@ -1,13 +1,4 @@
-<p>
-<%= link_to 'Edit', edit_position_path(@position) %>&nbsp;
-<%= link_to 'Delete', position_path(@position),
-            method: :delete,
-            data: { confirm: 'Are you sure you want to delete position ' + @position.title + '?' } %>
-</p>
-<p>
-    <strong>Title:</strong>
-    <%= @position.title %>
-</p>
+<h2>Open position: <%= @position.title %></h2>
 
 <p>
     <strong>Description:</strong><br>
@@ -19,4 +10,8 @@
     <%= raw @position.all_skills %>
 </p>
 
+<%= link_to 'Edit', edit_position_path(@position) %>
+<%= link_to 'Delete', position_path(@position),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to delete position ' + @position.title + '?' } %>
 <%= link_to 'Back', positions_path %>

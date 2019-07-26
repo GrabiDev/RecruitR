@@ -1,5 +1,5 @@
-<h1>All positions</h1>
-
+<h2>All positions</h2>
+<%= link_to 'Add position', new_position_path %>
 <table>
     <% @positions.each do |position| %>
         <tr>
@@ -15,6 +15,3 @@
         </tr>
     <% end %>
 </table>
-<br>
-<%= link_to 'Add position', new_position_path %>
-<%= link_to 'Back', controller: 'dashboard' %>

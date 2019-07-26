@@ -1,6 +1,5 @@
+<h2>Listing skills</h2>
 <%= link_to 'Add skill', new_skill_path %>
-<h1>Listing skills</h1>
-
 <table>
     <tr>
         <th>Skill name</th>
@@ -12,9 +11,7 @@
             <td><%= link_to 'Edit', edit_skill_path(skill) %></td>
             <td><%= link_to 'Delete', skill_path(skill),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: 'Are you sure you want to delete ' + skill.name + '?' } %></td>
         </tr>
     <% end %>
 </table>
-<br>
-<%= link_to 'Back', controller: 'dashboard' %>
