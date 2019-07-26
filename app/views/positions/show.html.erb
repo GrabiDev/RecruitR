@@ -1,4 +1,10 @@
 <p>
+<%= link_to 'Edit', edit_position_path(@position) %>&nbsp;
+<%= link_to 'Delete', position_path(@position),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+</p>
+<p>
     <strong>Title:</strong>
     <%= @position.title %>
 </p>
