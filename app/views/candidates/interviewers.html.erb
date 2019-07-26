@@ -4,3 +4,16 @@
 <% @candidate.skills.each do |skill| %>
     #<%= skill.name %>
 <% end %>
+<% @candidate.interview = Interview.new %>
+<%= form_for @candidate.interview do |form| %>
+    <%= form.hidden_field :candidate %>
+    <%= hidden_field_tag :candidate, @candidate %>
+    <p>
+      <%= form.label :manager %><br>
+      <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+
+<% end %>
