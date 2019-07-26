@@ -7,6 +7,10 @@ class PositionsController < ApplicationController
     @position = Position.find(params[:id])
   end
 
+  def candidates
+    @position = Position.find(params[:id])
+  end
+
   def new
     @position = Position.new
   end

@@ -10,7 +10,7 @@
                 <% end %>
             </td>
             <td>
-                <%= pluralize(Candidate.where(position: position).count, "candidate") %>
+                <%= link_to pluralize(Candidate.where(position: position).count, "candidate"), controller: 'positions', action: 'candidates', id: position %>
             </td>
         </tr>
     <% end %>
