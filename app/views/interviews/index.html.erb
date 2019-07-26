@@ -5,21 +5,21 @@
         <th>Candidate</th>
         <th>Location</th>
         <th>Date</th>
-        <th>Start</th>
-        <th>Finish</th>
+        <th>Start time</th>
+        <th>Finish time</th>
         <th>Managers</th>
     </tr>
 
     <% @interviews.each do |interview| %>
         <tr>
-            <td><%= interview.candidate.first_name %> <%= interview.candidate.last_name %></td>
+            <td><%= interview.candidate.full_name %></td>
             <td><%= interview.location %></td>
             <td><%= interview.start_datetime.to_date %></td>
             <td><%= interview.start_datetime.to_s(:time) %></td>
             <td><%= interview.end_datetime.to_s(:time) %></td>
             <td>
                 <% interview.managers.each do |manager| %>
-                    <%= manager.first_name %> <%= manager.last_name %><br>
+                    <%= manager.full_name %><br>
                 <% end %>
             </td>
             <td><%= link_to 'Edit', edit_interview_path(interview) %></td>

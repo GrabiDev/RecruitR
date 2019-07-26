@@ -17,25 +17,25 @@
 
     <p>
       <%= form.label :candidate %><br>
-      <%= form.collection_select :candidate_id, Candidate.all, :id, :first_name %>
+      <%= form.collection_select :candidate_id, Candidate.all, :id, :full_name %>
     </p>
     <p>
       <%= form.label :manager %><br>
-      <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :first_name %>
+      <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name %>
     </p>
     <p>
       <%= form.label :location %>
       <%= form.text_field :location %>
     </p>
     <p>
-      <%= form.label :start_datetime %>
+      Starts 
       <%= form.text_field :start_datetime %>
       <script>
       jQuery('#interview_start_datetime').datetimepicker();
       </script>
     </p>
     <p>
-      <%= form.label :end_datetime %>
+      Finishes 
       <%= form.text_field :end_datetime %>
       <script>
       jQuery('#interview_end_datetime').datetimepicker();

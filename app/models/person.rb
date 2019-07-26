@@ -6,6 +6,10 @@ class Person < ApplicationRecord
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, length: { minimum: 5 }, uniqueness: { case_sensitive: false }
 
+  def full_name
+    first_name + ' ' + last_name
+  end
+  
   def all_skills=(names)
     self.skills = names.split(",").map do |name|
       Skill.where(name: name.strip).first_or_create!
