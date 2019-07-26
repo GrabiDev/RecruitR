@@ -10,6 +10,7 @@ class InterviewsController < ApplicationController
 
   def new
     @interview = Interview.new
+    @interview.managers.build
   end
 
   def create
@@ -45,6 +46,6 @@ class InterviewsController < ApplicationController
 
   private
     def interview_params
-      params.require(:interview).permit(:candidate_id, :manager_ids, :location, :start_datetime, :end_datetime)
+      params.require(:interview).permit(:candidate_id, :location, :start_datetime, :end_datetime, manager_ids: [])
     end
 end
