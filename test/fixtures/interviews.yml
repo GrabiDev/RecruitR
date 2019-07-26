@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  candidate: one
+  location: MyString
+  start_datetime: 2019-07-26 08:40:20
+  end_datetime: 2019-07-26 08:40:20
+
+two:
+  candidate: two
+  location: MyString
+  start_datetime: 2019-07-26 08:40:20
+  end_datetime: 2019-07-26 08:40:20

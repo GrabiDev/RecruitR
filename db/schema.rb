@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_225907) do
+ActiveRecord::Schema.define(version: 2019_07_26_074122) do
+
+  create_table "interviews", force: :cascade do |t|
+    t.integer "candidate_id"
+    t.string "location"
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_interviews_on_candidate_id"
+  end
+
+  create_table "manager_interview_taggings", force: :cascade do |t|
+    t.integer "interview_id"
+    t.integer "manager_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interview_id"], name: "index_manager_interview_taggings_on_interview_id"
+    t.index ["manager_id"], name: "index_manager_interview_taggings_on_manager_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "first_name"

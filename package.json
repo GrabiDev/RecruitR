@@ -1,5 +1,7 @@
 {
   "name": "recruitr",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-datetimepicker": "^2.5.21"
+  }
 }

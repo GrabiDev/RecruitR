@@ -1,0 +1,27 @@
+<%= link_to 'Schedule interview', new_interview_path %>
+<h1>Listing interviews</h1>
+
+<table>
+    <tr>
+        <th>Candidate</th>
+        <th>Location</th>
+        <th>Start datetime</th>
+        <th>End datetime</th>
+    </tr>
+
+    <% @interviews.each do |interview| %>
+        <tr>
+            <td><%= interview.candidate.first_name %> <%= interview.candidate.last_name %></td>
+            <td><%= interview.location %></td>
+            <td><%= interview.start_datetime %></td>
+            <td><%= interview.end_datetime %></td>
+            <td><%= link_to 'Show assigned managers', interview_path(interview) %></td>
+            <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
+            <td><%= link_to 'Delete', interview_path(interview),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>
+<br>
+<%= link_to 'Back', controller: 'dashboard' %>
