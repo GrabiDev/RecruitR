@@ -1,5 +1,6 @@
 <h2>Scheduled interviews</h2>
-<%= link_to 'Schedule an interview', new_interview_path %>
+<% if Interview.all.count > 0 %>
+<%= link_to 'Schedule not listed interview', new_interview_path %>
 <table>
     <tr>
         <th>Candidate</th>
@@ -25,7 +26,33 @@
             <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
             <td><%= link_to 'Delete', interview_path(interview),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: 'Are you sure you want to delete ' + interview.candidate.full_name + '?' } %></td>
         </tr>
     <% end %>
 </table>
+
+<h2>To be scheduled</h2>
+<table>
+    <tr>
+        <th>Candidate</th>
+        <th>Managers</th>
+    </tr>
+
+    <% @interviews.where(start_datetime: nil).each do |interview| %>
+        <tr>
+            <td><%= interview.candidate.full_name %></td>
+            <td>
+                <% interview.managers.each do |manager| %>
+                    <%= manager.full_name %><br>
+                <% end %>
+            </td>
+            <td><%= link_to 'Schedule', edit_interview_path(interview) %></td>
+            <td><%= link_to 'Delete', interview_path(interview),
+            method: :delete,
+            data: { confirm: 'Are you sure you want to delete ' + interview.candidate.full_name + '?' } %></td>
+        </tr>
+    <% end %>
+</table>
+<% else %>
+<h3>No interviews planned</h3>
+<% end %>
