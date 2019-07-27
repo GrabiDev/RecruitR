@@ -1,5 +1,7 @@
 <h2>New Applicant</h2>
-
+<% if Position.all.count > 0 %>
 <%= render 'form' %>
-
+<% else %>
+<h3><%= link_to 'Create position', new_position_path %> before creating applicants</h3>
+<% end %>
 <%= link_to 'Back', candidates_path %>

@@ -1,5 +1,6 @@
 <h2>All positions</h2>
 <%= link_to 'Add position', new_position_path %>
+<% if @positions.count > 0 %>
 <table>
     <% @positions.each do |position| %>
         <tr>
@@ -15,3 +16,6 @@
         </tr>
     <% end %>
 </table>
+<% else %>
+<h3>No positions open at the moment.</h3>
+<% end %>

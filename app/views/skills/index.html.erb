@@ -1,5 +1,6 @@
 <h2>Listing skills</h2>
 <%= link_to 'Add skill', new_skill_path %>
+<% if @skills.count > 0 %>
 <table>
     <tr>
         <th>Skill name</th>
@@ -15,3 +16,6 @@
         </tr>
     <% end %>
 </table>
+<% else %>
+<h3>No skills to show.</h3>
+<% end %>

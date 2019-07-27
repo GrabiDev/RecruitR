@@ -1,5 +1,7 @@
-<h2>Scheduled interviews</h2>
+<h2>Listing interviews</h2>
 <% if Interview.all.count > 0 %>
+<% if @interviews.where.not(start_datetime: nil).count > 0 %>
+<h3>Scheduled interviews</h3>
 <table>
     <tr>
         <th>Candidate</th>
@@ -29,8 +31,10 @@
         </tr>
     <% end %>
 </table>
+<% end %>
 
-<h2>To be scheduled</h2>
+<% if @interviews.where(start_datetime: nil).count > 0 %>
+<h3>To be scheduled</h3>
 <table>
     <tr>
         <th>Candidate</th>
@@ -52,6 +56,7 @@
         </tr>
     <% end %>
 </table>
+<% end %>
 <% else %>
 <h3>No interviews planned</h3>
 <% end %>

@@ -9,12 +9,13 @@ class InterviewsController < ApplicationController
 
 
   def new
+    @candidate = Candidate.find(params[:candidate_id])
     @interview = Interview.new
     @interview.managers.build
   end
 
   def create
-    @interview = Interview.new(interview_params)
+    @interview = Interview.new(new_interview_params)
 
     if @interview.save
       redirect_to interviews_path
@@ -47,5 +48,9 @@ class InterviewsController < ApplicationController
   private
     def interview_params
       params.require(:interview).permit(:candidate_id, :location, :start_datetime, :end_datetime, manager_ids: [])
+    end
+
+    def new_interview_params
+      params.require(:interview).permit(:candidate_id, manager_ids: [])
     end
 end
