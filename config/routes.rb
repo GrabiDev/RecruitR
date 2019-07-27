@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get 'interviews/new'
   get 'positions/index'
   get 'positions/new'
-  get 'positions/:id/candidates', to: 'positions#candidates'
-  get 'candidates/:id/interviewers', to: 'candidates#interviewers'
   get 'candidates/index'
   get 'candidates/new'
   get 'managers/index'

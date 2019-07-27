@@ -1,6 +1,9 @@
 class CandidatesController < ApplicationController
   def index
     @candidates = Candidate.all
+    if params[:position_id].present?
+      @candidates = Candidate.where(position_id: params[:position_id])
+    end
   end
 
   def show
