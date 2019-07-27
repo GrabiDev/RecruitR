@@ -1,6 +1,6 @@
 class Position < ApplicationRecord
   has_many :position_skill_taggings
-  has_many :skills, through: :position_skill_taggings
+  has_many :skills, -> { distinct }, through: :position_skill_taggings
   has_many :candidates
   before_destroy :destroy_candidates
 
