@@ -1,5 +1,6 @@
 <h2>All managers</h2>
 <%= link_to 'Add manager', new_manager_path %>
+<% if @managers.each.any? %>
 <table>
     <tr>
         <th>First name</th>
@@ -25,3 +26,6 @@
         </tr>
     <% end %>
 </table>
+<% else %>
+<h3>No managers added.</h3>
+<% end %>
