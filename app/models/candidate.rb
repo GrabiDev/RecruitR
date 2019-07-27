@@ -4,6 +4,8 @@ class Candidate < Person
     before_destroy :destroy_interview
 
     def destroy_interview
-      interview.destroy
+      if interview.present?
+        interview.destroy
+      end
     end
 end

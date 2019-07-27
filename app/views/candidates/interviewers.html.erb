@@ -4,7 +4,6 @@
 <% @candidate.skills.each do |skill| %>
     #<%= skill.name %>
 <% end %>
-<% @candidate.interview = Interview.new %>
 <%= form_for @candidate.interview do |form| %>
     <%= form.hidden_field :candidate %>
     <%= hidden_field_tag :candidate, @candidate %>

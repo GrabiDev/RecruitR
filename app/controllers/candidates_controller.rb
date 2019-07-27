@@ -9,6 +9,7 @@ class CandidatesController < ApplicationController
 
   def interviewers
     @candidate = Candidate.find(params[:id])
+    @candidate.interview = Interview.new
   end
 
   def new

@@ -1,6 +1,5 @@
 <h2>Scheduled interviews</h2>
 <% if Interview.all.count > 0 %>
-<%= link_to 'Schedule not listed interview', new_interview_path %>
 <table>
     <tr>
         <th>Candidate</th>
@@ -11,7 +10,7 @@
         <th>Managers</th>
     </tr>
 
-    <% @interviews.where.not(start_datetime: nil).each do |interview| %>
+    <% @interviews.where.not(start_datetime: nil).order('start_datetime DESC').each do |interview| %>
         <tr>
             <td><%= interview.candidate.full_name %></td>
             <td><%= interview.location %></td>
