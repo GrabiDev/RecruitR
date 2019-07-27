@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 2019_07_26_074122) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "interviews", force: :cascade do |t|
-    t.integer "candidate_id"
+    t.bigint "candidate_id"
     t.string "location"
     t.datetime "start_datetime"
     t.datetime "end_datetime"
@@ -23,8 +26,8 @@ ActiveRecord::Schema.define(version: 2019_07_26_074122) do
   end
 
   create_table "manager_interview_taggings", force: :cascade do |t|
-    t.integer "interview_id"
-    t.integer "manager_id"
+    t.bigint "interview_id"
+    t.bigint "manager_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["interview_id"], name: "index_manager_interview_taggings_on_interview_id"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 2019_07_26_074122) do
   end
 
   create_table "person_skill_taggings", force: :cascade do |t|
-    t.integer "person_id"
-    t.integer "skill_id"
+    t.bigint "person_id"
+    t.bigint "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_person_skill_taggings_on_person_id"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 2019_07_26_074122) do
   end
 
   create_table "position_skill_taggings", force: :cascade do |t|
-    t.integer "position_id"
-    t.integer "skill_id"
+    t.bigint "position_id"
+    t.bigint "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position_id"], name: "index_position_skill_taggings_on_position_id"
@@ -72,4 +75,9 @@ ActiveRecord::Schema.define(version: 2019_07_26_074122) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "manager_interview_taggings", "interviews", on_delete: :cascade
+  add_foreign_key "person_skill_taggings", "people", on_delete: :cascade
+  add_foreign_key "person_skill_taggings", "skills", on_delete: :cascade
+  add_foreign_key "position_skill_taggings", "positions", on_delete: :cascade
+  add_foreign_key "position_skill_taggings", "skills", on_delete: :cascade
 end
