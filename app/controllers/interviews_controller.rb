@@ -18,7 +18,7 @@ class InterviewsController < ApplicationController
     @interview = Interview.new(new_interview_params)
 
     if @interview.save
-      redirect_to interviews_path
+      redirect_to candidates_path
     else
       render 'new'
     end
