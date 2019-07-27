@@ -1,7 +1,10 @@
 <h2>New Applicant</h2>
 <% if Position.all.count > 0 %>
+<% if params[:position_id].present? %>
+<%= render 'form', selected_position_id: params[:position_id] %>
+<% else %>
 <%= render 'form' %>
+<% end %>
 <% else %>
 <h3><%= link_to 'Create position', new_position_path %> before creating applicants</h3>
 <% end %>
-<%= link_to 'Back', candidates_path %>
