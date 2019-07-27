@@ -21,7 +21,7 @@
     </div>
   <% end %>
 
-    <%= form.hidden_field :candidate_id, :value => params[:candidate_id] %>
+    <%= form.hidden_field :candidate_id, :value => @candidate.id %>
     <p>
       <%= form.label :manager %><br>
       <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name %>

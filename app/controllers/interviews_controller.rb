@@ -9,8 +9,10 @@ class InterviewsController < ApplicationController
 
 
   def new
-    @candidate = Candidate.find(params[:candidate_id])
     @interview = Interview.new
+    if params[:candidate_id].present?
+      @candidate = Candidate.find(params[:candidate_id])
+    end
     @interview.managers.build
   end
 
@@ -20,6 +22,8 @@ class InterviewsController < ApplicationController
     if @interview.save
       redirect_to candidates_path
     else
+      # persisting information about candidates on refresh
+      @candidate = @interview.candidate
       render 'new'
     end
   end
