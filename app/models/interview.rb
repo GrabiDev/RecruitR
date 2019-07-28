@@ -9,6 +9,7 @@ class Interview < ApplicationRecord
   validate :end_datetime_must_be_after_start_datetime
   validate :location_available
   validate :must_start_and_end_on_the_same_day
+  validate :managers_available
 
   def start_datetime_cannot_be_in_the_past
     if start_datetime.present? && start_datetime.past?
@@ -22,6 +23,16 @@ class Interview < ApplicationRecord
     end
   end
 
+  def managers_available
+    managers.each do |manager|
+      manager.interviews.each do |interview|
+        if ((interview.start_datetime >= start_datetime and interview.start_datetime <= end_datetime) or end_datetime <= interview.end_datetime) and interview.id != id
+          errors.add(:manager, manager.full_name + " has other interview planned at this time")
+        end
+      end
+    end
+  end
+
   def must_start_and_end_on_the_same_day
     if start_datetime.present? && end_datetime.present? && start_datetime.to_date != end_datetime.to_date
       errors.add(:interview, "must start and end on the same day")
@@ -29,7 +40,7 @@ class Interview < ApplicationRecord
   end
 
   def location_available
-    overlapping_interviews = Interview.where(["((start_datetime >= :start_dt and start_datetime < :end_dt) or end_datetime <= :end_dt) and location = :location and not id = :id", {start_dt: start_datetime, end_dt: end_datetime, location: location, id: id}])
+    overlapping_interviews = Interview.where(["((start_datetime >= :start_dt and start_datetime < :end_dt) or end_datetime <= :end_dt) and location like :location and not id = :id", {start_dt: start_datetime, end_dt: end_datetime, location: location, id: id}])
 
     if overlapping_interviews.present?
       errors.add(:location, "is already booked during this time")
