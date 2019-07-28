@@ -3,6 +3,7 @@ class Interview < ApplicationRecord
   has_many :manager_interview_taggings
   has_many :managers, through: :manager_interview_taggings
 
+  before_validation :convert_location_to_lowercase
   validates :candidate, uniqueness: true
   validates :managers, presence: true
   validate :start_datetime_cannot_be_in_the_past
@@ -10,6 +11,11 @@ class Interview < ApplicationRecord
   validate :location_available
   validate :must_start_and_end_on_the_same_day
   validate :managers_available
+
+  # convert location to trimmed lowercase
+  def convert_location_to_lowercase
+    self.location = location.downcase.strip
+  end
 
   def start_datetime_cannot_be_in_the_past
     if start_datetime.present? && start_datetime.past?
@@ -27,7 +33,7 @@ class Interview < ApplicationRecord
     managers.each do |manager|
       manager.interviews.each do |interview|
         if ((interview.start_datetime >= start_datetime and interview.start_datetime <= end_datetime) or end_datetime <= interview.end_datetime) and interview.id != id
-          errors.add(:manager, manager.full_name + " has other interview planned at this time")
+          errors.add(:manager, manager.full_name + " has other interview planned between " + interview.start_datetime.to_s(:time) + " and " + interview.end_datetime.to_s(:time))
         end
       end
     end
