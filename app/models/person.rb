@@ -7,6 +7,7 @@ class Person < ApplicationRecord
   validates :first_name, presence: true, length: { minimum: 2 }
   validates :last_name, presence: true, length: { minimum: 2 }
   validates :email, presence: true, length: { minimum: 5 }, uniqueness: { case_sensitive: false }
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
   # method to compile full name for easier display purposes
   def full_name
