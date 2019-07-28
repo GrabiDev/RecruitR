@@ -1,10 +1,14 @@
 <h2>New Applicant</h2>
+<% # allow for adding candidates only when positions exist %>
 <% if Position.all.count > 0 %>
+<% # pass parameter if position_id present %>
 <% if params[:position_id].present? %>
 <%= render 'form', selected_position_id: params[:position_id] %>
 <% else %>
+<% # otherwise generate a generic form %>
 <%= render 'form' %>
 <% end %>
 <% else %>
+<% # when no positions available, show link to create one %>
 <h3><%= link_to 'Create position', new_position_path %> before creating applicants</h3>
 <% end %>

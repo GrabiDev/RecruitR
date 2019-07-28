@@ -1,5 +1,6 @@
+<% # form for adding and editing candidates %>
 <%= form_with model: @candidate, local: true do |form| %>
-    
+    <% # show errors if present %>
     <% if @candidate.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -14,6 +15,7 @@
     </div>
   <% end %>
 
+  <% # form fields %>
     <p>
       <%= form.label :first_name %><br>
       <%= form.text_field :first_name %>
@@ -34,6 +36,7 @@
       <%= form.text_field :all_skills, placeholder: "Skills separated with comma" %>
     </p>
     
+    <% # if position passed as a parameter, select it %>
     <p>
       <%= form.label :position %><br>
       <%= form.collection_select :position_id, Position.all, :id, :title, { selected: local_assigns[:selected_position_id] } %>

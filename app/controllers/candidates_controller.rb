@@ -1,8 +1,10 @@
 class CandidatesController < ApplicationController
   def index
-    @candidates = Candidate.all
+    # if position parameter passed, candidates only for this position
     if params[:position_id].present?
       @candidates = Candidate.where(position_id: params[:position_id])
+    else # otherwise, list all candidates
+      @candidates = Candidate.all
     end
   end
 

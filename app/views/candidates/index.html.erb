@@ -1,3 +1,5 @@
+<% # View to display candidates. If parameter position_id passed %>
+<% # then candidates only for given position displayed %>
 <h2>All candidates
 <% if params[:position_id].present? %>
 for the 
@@ -6,6 +8,7 @@ for the
 <% end %>
 </h2>
 <% if params[:position_id].present? %>
+<% # add candidate to a position selected for listing %>
 <%= link_to 'Add candidate for this position', action: 'new', position_id: params[:position_id] %>
 <% else %>
 <%= link_to 'Add candidate', new_candidate_path %>

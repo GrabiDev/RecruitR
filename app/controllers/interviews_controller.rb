@@ -10,9 +10,8 @@ class InterviewsController < ApplicationController
 
   def new
     @interview = Interview.new
-    if params[:candidate_id].present?
-      @candidate = Candidate.find(params[:candidate_id])
-    end
+    # assign candidate from a parameter to an interview
+    @candidate = Candidate.find(params[:candidate_id])
     @interview.managers.build
   end
 
