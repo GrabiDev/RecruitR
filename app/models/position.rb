@@ -23,6 +23,11 @@ class Position < ApplicationRecord
     self.skills.map(&:name).join(", ")
   end
 
+  # method to compile skills with hashtags for visual purposes
+  def all_skills_with_hashtags
+    self.skills.map(&:name).collect{|name| '#' + name}.join(' ')
+  end
+
   # ensuring candidates assigned to the position are also removed
   def destroy_candidates
     candidates.each  do |candidate|

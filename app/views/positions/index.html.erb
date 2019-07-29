@@ -6,9 +6,7 @@
         <tr>
             <td><%= link_to position.title, position_path(position) %></td>
             <td>
-                <% position.skills.each do |skill| %>
-                    #<%= skill.name %>&nbsp;
-                <% end %>
+                <%= position.all_skills_with_hashtags %>
             </td>
             <td>
                 <% # link to view candidates for a given position %>

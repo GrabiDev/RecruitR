@@ -44,9 +44,7 @@ for the
                 <% end %>
             </td>
             <td>
-                <% candidate.skills.each do |skill| %>
-                    #<%= skill.name %>&nbsp;
-                <% end %>
+                <%= candidate.all_skills_with_hashtags %>
             </td>
             <td><%= link_to 'Edit', edit_candidate_path(candidate) %></td>
             <td><%= link_to 'Delete', candidate_path(candidate),

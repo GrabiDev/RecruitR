@@ -15,9 +15,7 @@
             <td><%= manager.last_name %></td>
             <td><%= manager.email %></td>
             <td>
-                <% manager.skills.each do |skill| %>
-                    #<%= skill.name %>&nbsp;
-                <% end %>
+                <%= manager.all_skills_with_hashtags %>
             </td>
             <td><%= link_to 'Edit', edit_manager_path(manager) %></td>
             <td><%= link_to 'Delete', manager_path(manager),

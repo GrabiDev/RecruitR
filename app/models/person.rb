@@ -16,16 +16,12 @@ class Person < ApplicationRecord
 
   # method to compile full name with the list of skills
   def full_name_with_skills
-    self.full_name + ' ' + self.skills_with_hashtags
+    self.full_name + ' ' + self.all_skills_with_hashtags
   end
 
   # method to compile skills with hashtags for visual purposes
-  def skills_with_hashtags
-    if self.skills.present?
-      '#' + self.skills.map(&:name).join(' #')
-    else
-      ''
-    end
+  def all_skills_with_hashtags
+    self.skills.map(&:name).collect{|name| '#' + name}.join(' ')
   end
   
   # for following two methods, code taken from:
@@ -42,5 +38,9 @@ class Person < ApplicationRecord
   # parameters for displaying them in edit view
   def all_skills
     self.skills.map(&:name).join(', ')
+  end
+
+  def all_skills_for_db
+    self.skills.map(&:name).collect{|name| '\'' + name + '\''}.join(', ')
   end
 end
