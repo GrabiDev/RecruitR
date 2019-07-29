@@ -25,11 +25,20 @@
     <%= form.hidden_field :candidate_id, :value => @candidate.id %>
   <% # manager selection fields %>
     <p>
+      <% if @matching_managers.present? %>
       <%= form.label :manager, 'Available managers:' %><br>
+      <%= form.collection_check_boxes :manager_ids, @matching_managers, :id, :full_name_with_skills do |cbox| %>
+        <% cbox.label do %>
+          <%= cbox.check_box + cbox.text %><br />
+        <% end %>
+      <% end %>
+      <% else %>
+      <%= form.label :manager, 'No managers with matching skills found. Listing all managers:' %><br>
       <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name_with_skills do |cbox| %>
         <% cbox.label do %>
           <%= cbox.check_box + cbox.text %><br />
         <% end %>
+      <% end %>
       <% end %>
     </p>
     <p>
