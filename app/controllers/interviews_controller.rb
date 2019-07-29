@@ -13,7 +13,6 @@ class InterviewsController < ApplicationController
     # assign candidate from a parameter to an interview
     @candidate = Candidate.find(params[:candidate_id])
     @matching_managers = Manager.select('people.id, people.first_name, people.last_name').joins(:skills).where(['skills.name in (?)', @candidate.skills.map(&:name)]).distinct
-    @interview.managers.build
   end
 
   def create
