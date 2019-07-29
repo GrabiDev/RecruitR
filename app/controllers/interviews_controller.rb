@@ -12,7 +12,7 @@ class InterviewsController < ApplicationController
     @interview = Interview.new
     # assign candidate from a parameter to an interview
     @candidate = Candidate.find(params[:candidate_id])
-    @matching_managers = Manager.select('people.id, people.first_name, people.last_name').joins(:skills).where(['skills.name in (?)', @candidate.skills.map(&:name)]).distinct
+    @matching_managers = Manager.select('people.id, people.first_name, people.last_name, count(skills.name in (' + @candidate.all_skills_for_db + ')) as skill_count').joins(:skills).where(['skills.name in (?)', @candidate.skills.map(&:name)]).group('people.id').order('skill_count desc')
   end
 
   def create
