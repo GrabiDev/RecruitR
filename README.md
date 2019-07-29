@@ -1,24 +1,14 @@
-# README
+# About
+RecruitR is a web-based solution for supporting business recruitment processes.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Running the project
+## Dependencies
+PostgreSQL, Ruby, Rails and Yarn needs to be installed on the machine where RecruitR is run.
 
-Things you may want to cover:
+## Before launching the server
+JQuery dependency needs to be installed using `yarn install`.
 
-* Ruby version
+Databases need to be migrated using `bin/rails db:migrate` or `ruby bin\rails db:migrate`.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Development server
+To launch development server, use `bin/rails server` or `ruby bin\rails server`.
