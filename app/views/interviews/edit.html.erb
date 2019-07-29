@@ -30,15 +30,15 @@
       <%= form.text_field :location, required: true %>
     </p>
     <p>
-      Starts 
-      <%= form.text_field :start_datetime, required: true %>
+      Start date and time 
+      <%= form.text_field :start_datetime, placeholder: 'Click to select', required: true %>
       <script>
       jQuery('#interview_start_datetime').datetimepicker();
       </script>
     </p>
     <p>
-      Finishes 
-      <%= form.text_field :end_datetime, required: true %>
+      End date and time  
+      <%= form.text_field :end_datetime, placeholder: 'Click to select', required: true %>
       <script>
       jQuery('#interview_end_datetime').datetimepicker();
       </script>
