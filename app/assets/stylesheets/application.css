@@ -13,4 +13,4 @@
  *= require_tree .
  *= require_self
  */
-@import "assets/jquery-datetimepicker/jquery.datetimepicker.css"
+//= require jquery-datetimepicker/jquery.datetimepicker
