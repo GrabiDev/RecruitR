@@ -26,7 +26,11 @@
   <% # manager selection fields %>
     <p>
       <%= form.label :manager, 'Available managers:' %><br>
-      <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name %>
+      <%= form.collection_check_boxes :manager_ids, Manager.all, :id, :full_name_with_skills do |cbox| %>
+        <% cbox.label do %>
+          <%= cbox.check_box + cbox.text %><br />
+        <% end %>
+      <% end %>
     </p>
     <p>
       <%= form.submit %>

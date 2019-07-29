@@ -13,13 +13,27 @@ class Person < ApplicationRecord
   def full_name
     first_name + ' ' + last_name
   end
+
+  # method to compile full name with the list of skills
+  def full_name_with_skills
+    self.full_name + ' ' + self.skills_with_hashtags
+  end
+
+  # method to compile skills with hashtags for visual purposes
+  def skills_with_hashtags
+    if self.skills.present?
+      '#' + self.skills.map(&:name).join(' #')
+    else
+      ''
+    end
+  end
   
   # for following two methods, code taken from:
   # https://www.sitepoint.com/tagging-scratch-rails/
 
   # method allowing for adding skills after a comma
   def all_skills=(names)
-    self.skills = names.split(",").map do |name|
+    self.skills = names.split(',').map do |name|
       Skill.where(name: name.strip).first_or_create!
     end
   end
@@ -27,6 +41,6 @@ class Person < ApplicationRecord
   # method for displaying skills as comma separated
   # parameters for displaying them in edit view
   def all_skills
-    self.skills.map(&:name).join(", ")
+    self.skills.map(&:name).join(', ')
   end
 end
