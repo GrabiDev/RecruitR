@@ -14,7 +14,9 @@ class Interview < ApplicationRecord
 
   # convert location to trimmed lowercase
   def convert_location_to_lowercase
-    self.location = location.downcase.gsub(/\s+/, "")
+    if self.location.present?
+      self.location = location.downcase.gsub(/\s+/, "")
+    end
   end
 
   def start_datetime_cannot_be_in_the_past
