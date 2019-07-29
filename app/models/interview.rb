@@ -34,8 +34,10 @@ class Interview < ApplicationRecord
   def managers_available
     managers.each do |manager|
       manager.interviews.each do |interview|
-        if ((interview.start_datetime >= start_datetime and interview.start_datetime <= end_datetime) or end_datetime <= interview.end_datetime) and interview.id != id
-          errors.add(:manager, manager.full_name + " has other interview planned between " + interview.start_datetime.to_s(:time) + " and " + interview.end_datetime.to_s(:time))
+        if (interview.start_datetime.present? && start_datetime.present?)
+          if ((interview.start_datetime >= start_datetime and interview.start_datetime <= end_datetime) or end_datetime <= interview.end_datetime) and interview.id != id
+            errors.add(:manager, manager.full_name + " has other interview planned between " + interview.start_datetime.to_s(:time) + " and " + interview.end_datetime.to_s(:time))
+          end
         end
       end
     end
