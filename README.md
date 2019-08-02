@@ -3,7 +3,7 @@ RecruitR is a web-based solution for supporting business recruitment processes.
 
 # Running the project
 ## Dependencies
-PostgreSQL, Ruby, Rails and Yarn needs to be installed on the machine where RecruitR is run.
+PostgreSQL, Ruby, Rails and Yarn need to be installed on the machine where RecruitR is run.
 
 ## Before launching the server
 JQuery dependency needs to be installed using `yarn install`.
