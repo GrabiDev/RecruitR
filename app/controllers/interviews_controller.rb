@@ -12,7 +12,7 @@ class InterviewsController < ApplicationController
     @interview = Interview.new
     # assign candidate from a parameter to an interview
     @candidate = Candidate.find(params[:candidate_id])
-    @matching_managers = Manager.select('people.id, people.first_name, people.last_name, count(skills.name in (' + @candidate.all_skills_for_db + ')) as skill_count').joins(:skills).where(['skills.name in (?)', @candidate.skills.map(&:name)]).group('people.id').order('skill_count desc')
+    @matching_managers = get_matching_managers
   end
 
   def create
@@ -23,6 +23,8 @@ class InterviewsController < ApplicationController
     else
       # persisting information about candidates on refresh
       @candidate = @interview.candidate
+      # persisting information about matching managers
+      @matching_managers = get_matching_managers
       render 'new'
     end
   end
@@ -55,5 +57,9 @@ class InterviewsController < ApplicationController
 
     def new_interview_params
       params.require(:interview).permit(:candidate_id, manager_ids: [])
+    end
+
+    def get_matching_managers
+      Manager.select('people.id, people.first_name, people.last_name, count(skills.name in (' + @candidate.all_skills_for_db + ')) as skill_count').joins(:skills).where(['skills.name in (?)', @candidate.skills.map(&:name)]).group('people.id').order('skill_count desc')
     end
 end
